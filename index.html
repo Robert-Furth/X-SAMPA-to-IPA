@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Convert X-SAMPA text into IPA symbols.">
+
+    <title>X-SAMPA to IPA Converter</title>
+
+    <!--link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"-->
+    <!--script src="//use.edgefonts.net/andika:n4:all.js"></script-->
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+
+    <!-- Main -->
+    <link type="text/css" rel="stylesheet" href="css/xsampa-to-ipa.css">
+    <script type="text/javascript" src="js/xsampa-to-ipa.js"></script>
+
+  </head>
+
+  <body>
+
+    <header>
+      <h1>X-SAMPA to IPA Converter</h1>
+    </header>
+
+    <main>
+      <p>
+        Type some <a href=https://www.wikipedia.org/wiki/X-SAMPA>X-SAMPA</a> text into the first box.
+        Its <a href=https://www.wikipedia.org/wiki/International_Phonetic_Alphabet>IPA</a> equivalent
+        will appear in the second box.
+      </p>
+      <div id="converter-area">
+
+        <div class="converter-column">
+          <div>
+            <label>Enter X-SAMPA text here
+              <textarea id="xsampa-input" spellcheck="false" autofocus></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="converter-column">
+          <div>
+            <label>IPA translation will appear here
+              <textarea id="ipa-output" spellcheck="false" readonly></textarea>
+            </label>
+          </div>
+        </div>
+
+      </div>
+      
+    </main>
+
+    <footer>
+
+    </footer>
+  
+    <script>
+      document.getElementById("xsampa-input").addEventListener("input", function(event) {
+        document.getElementById("ipa-output").value = convert(event.target.value);
+      });
+    </script>
+  </body>
+</html>
