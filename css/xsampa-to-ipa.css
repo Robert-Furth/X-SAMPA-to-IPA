@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Fira Sans with IPA";
-  src: url("/font/FiraSans-Regular.woff") format("woff");
+  src: url("../xsampa-to-ipa/font/FiraSans-Regular.woff") format("woff");
 }
 
 body {
@@ -53,8 +53,8 @@ label {
 textarea {
   /* Sizing/Layout */
   width: 100%;
-  /*height: 370px;*/
   height: 50vh;
+  min-height: 250px;
   margin-top: 6px;
 
   /* Interior margins */
@@ -70,15 +70,12 @@ textarea {
   resize: none;
 }
 
-
-
 #converter-area {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   /*margin: 20px*/
 }
-
 
 .converter-column {
   flex: 50%;
@@ -104,6 +101,7 @@ textarea {
 @media screen and (max-width: 992px) {
   textarea {
     height: 35vh;
+    min-height: 0;
   }
   
   #converter-area {
