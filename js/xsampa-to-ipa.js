@@ -38,6 +38,7 @@ function convertBase(str, i) {
 
 function convertDiacritics(str, i, xsBase, ipaBase) {
   var xsDiac, ipaCombDiacs = "", ipaNonCombDiacs = "";
+  var rColored = false;
 
   while (diacriticStart.includes(str[i]) && str.slice(i, i+2) != "=\\") {
     xsDiac = str[i++];
@@ -62,9 +63,13 @@ function convertDiacritics(str, i, xsBase, ipaBase) {
           xsDiac += "_F";
           i += 2;
         }
-      } else if ((xsDiac == "`") && baseMap.hasOwnProperty(xsBase + "`")) {
-        // Special case for retroflex consonants (and some R-colored vowels)
-        ipaBase = xsBaseToIpaBase(xsBase + "`");
+      } else if ((xsDiac == "`")) {
+        if (baseMap.hasOwnProperty(xsBase + "`"))
+          // Special case for retroflex consonants (and some R-colored vowels)
+          ipaBase = xsBaseToIpaBase(xsBase + "`");
+        else
+          rColored = true;
+        
         xsDiac = "";
       }
 
@@ -77,6 +82,10 @@ function convertDiacritics(str, i, xsBase, ipaBase) {
       else
         ipaNonCombDiacs += xsDiac;
   }
+
+  // Makes sure combining diacritics don't go over the hook diacritic.
+  if (rColored)
+    ipaCombDiacs += combiningDiacs["`"];
 
   return [ipaBase, ipaCombDiacs + ipaNonCombDiacs, i];
 }
