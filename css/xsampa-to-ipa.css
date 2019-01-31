@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Fira Sans with IPA";
-  src: url("../xsampa-to-ipa/font/FiraSans-Regular.woff") format("woff");
+  src: url("../font/FiraSans-Regular.woff") format("woff");
 }
 
 body {
